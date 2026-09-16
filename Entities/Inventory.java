@@ -113,31 +113,31 @@ public class Inventory {
         Weapon w = null;
         try {
             w = (Weapon)this.inventory[4];    
-        } catch (NullPointerException e) {
-            System.out.println("No weapon equipped");
-            return null;
-        } catch (Exception e) {
+        } catch (ClassCastException e) {
             System.out.println("Wrong type stored at index: 4. Clearing index: 4");
             this.inventory[4] = null;
             return null;
         }
-        
+
+        if (w == null)
+            System.out.println("No weapon equipped");
+
         return w;
     }
 
     public Armour getArmour(int index){
         Armour a = null;
-
+        
         try {
             a = (Armour)this.inventory[index % 4]; // can access indexes 0 - 3 (should be armour only)
-        } catch (NullPointerException e) {
-            System.out.println("No armour equipped in this slot");
-            return null;
-        } catch (Exception e) {
-            System.out.printf("Wrong type stored at index %d: . Clearing index: %d", index%4, index%4);
+        } catch (ClassCastException e) {
+            System.out.printf("Wrong type stored at index %d: . Clearing index: %d\n", index%4, index%4);
             this.inventory[index % 4] = null;
             return null;
         } 
+
+        if (a == null)
+            System.out.println("No weapon equipped");
 
         return a;
     }

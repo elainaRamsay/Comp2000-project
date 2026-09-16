@@ -129,7 +129,12 @@ public class Tester {
     }
 
     public static void invArmourTester(){
-        
+        Player one = new Player("one", 20, 10,5);
+
+        one.getInv().inventory[0] = new Weapon("sword", 10, 10);
+
+        Item gren = one.getInv().getArmour(0);
+        System.out.println(gren);
     }
 
     public static void InventoryTester(){
